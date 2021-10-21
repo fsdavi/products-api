@@ -13,6 +13,12 @@ app.use(cors({
   origin: '*'
 }));
 
+app.use((_, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 router.get('/produtos', (_, res) => {
   let produtosAjustados = data.produtos.map(produto => ({id: produto.id, nome: produto.nome}));
   res.json(produtosAjustados);
