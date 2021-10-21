@@ -1,5 +1,6 @@
 const express = require('express');
 const serverless = require('serverless-http');
+const cors = require('cors');
 
 const app = express();
 const router = express.Router();
@@ -20,3 +21,4 @@ router.get('/produtos/:id', (req, res) => {
 })
 
 app.use('/.netlify/functions/api', router);
+app.use(cors());
