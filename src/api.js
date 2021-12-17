@@ -13,7 +13,11 @@ app.use(cors({
   origin: '*'
 }));
 
-router.get('/produtos', (_, res) => {
+router.get('/produtos', async (_, res) => {
+  const database = require('./db');
+  const Categoria = require('./models/categoria');
+  await database.sync();
+
   let produtosAjustados = data.produtos.map(produto => ({id: produto.id, nome: produto.nome}));
   res.json(produtosAjustados);
 })
