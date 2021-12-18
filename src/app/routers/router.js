@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 var data = require('../../../data/productsMock.json');
 
-router.get('/produtos', async (_, res) => {
+router.get('/produtos', (_, res) => {
   let produtosAjustados = data.produtos.map(produto => ({id: produto.id, nome: produto.nome}));
   res.json(produtosAjustados);
 })
