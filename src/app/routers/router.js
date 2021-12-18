@@ -1,16 +1,10 @@
 let express = require('express');
 let router = express.Router();
-var data = require('../../../data/productsMock.json');
+const produtos = require('../controllers/ControllerProduto.js');
 
-router.get('/produtos', (_, res) => {
-  let produtosAjustados = data.produtos.map(produto => ({id: produto.id, nome: produto.nome}));
-  res.json(produtosAjustados);
-})
-
-router.get('/produtos/:id', (req, res) => {
-  var IdDoProduto = req.params.id;
-  var produtoRecuperadoPorId = data.produtos.find(produto => produto.id == IdDoProduto);
-  res.json(produtoRecuperadoPorId);
-});
+router.post('/produtos/create', produtos.create);
+router.get('/produtos', produtos.consultaTodosProdutos);
+router.get('/produtos/:id', produtos.consultaProdutoPorId);
+router.delete('/produtos/delete/:id', customers.deletaProdutoPorId);
 
 module.exports = router;
